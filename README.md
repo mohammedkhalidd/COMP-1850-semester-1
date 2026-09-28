@@ -1,2 +1,4 @@
-# semester-1
-Week by week content for semester of COMP1850: lecture notes, in-class tasks, worksheets
+# About me
+# My name is mohammed 
+# im 18 years old 
+# im new to leeds 
