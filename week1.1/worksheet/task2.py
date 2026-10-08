@@ -17,7 +17,7 @@ while True:
             raise ValueError
         break
     except ValueError:
-        print("Invalid Amount")
+        print("Invalid amount")
 
 # Calculate the total amount of money they will have saved by the end of the year (amount per month multiplied by 12).
 # print this out for the user with a suitable message.
