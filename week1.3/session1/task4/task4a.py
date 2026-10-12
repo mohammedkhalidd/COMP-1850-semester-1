@@ -1,8 +1,8 @@
 # Week 1.3, Session 1: Task 4a
 
 sum = 0
-
-for k in range(1,10):
+for k in range(2, 21, 2):
+    print(k)
     sum = sum + k ** 2
 
 print(sum)

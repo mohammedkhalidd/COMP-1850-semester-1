@@ -2,8 +2,11 @@
 
 k = 2
 while True:
+    if k > 200:
+        break
     k = 2 * k 
     print(k)
+
     
 
 # As written this is an infinite loop.
