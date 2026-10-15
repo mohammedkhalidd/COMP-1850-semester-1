@@ -1,18 +1,49 @@
 # Week 1.3, Session 2: Validate image
 
-# Open a pgm image
-# You could handle file errors with try/except
+from pathlib import Path
 
-# Read the file content
 
-# Store the width, the height, and the maximum gray value
+def validate_image(image_file):
+    try:
+        with open(image_file, 'r') as file:
+            tokens = []
+            for line in file:
+                stripped = line.strip()
+                if not stripped or stripped.startswith('#'):
+                    continue
+                tokens.extend(stripped.split())
 
-# For each pixel, check if the pixel value is between 0 and the maximum gray value inclusive
+        if len(tokens) < 4:
+            raise ValueError("Invalid PGM file")
 
-# Check if the widths and heights are the same as specified
+        if tokens[0] != 'P2':
+            raise ValueError("This is not a valid PGM file")
 
-# 4. Print the final verdit.
-#  Print `Valid image` if the widths, the heights are the same, and all pixel values between 0 and the maximum gray value inclusive
-#  Print `Invalid width` if the widths are different
-#  Print `Invalid height` if the heights are different
-#  Print `Invalid pixel values` if any pixel values is less than 0 and greater than the maximum gray value
+        width, height = map(int, tokens[1:3])
+        max_gray_value = int(tokens[3])
+        pixels = list(map(int, tokens[4:]))
+
+        expected_pixels = width * height
+
+        if len(pixels) != expected_pixels:
+            if len(pixels) % width == 0:
+                print("Invalid height")
+            else:
+                print("Invalid width")
+            return
+
+        for pixel in pixels:
+            if pixel < 0 or pixel > max_gray_value:
+                print("Invalid pixel values")
+                return
+
+        print("Valid image")
+
+    except FileNotFoundError:
+        print(f"Error: {image_file} not found.")
+    except ValueError as error:
+        print(f"Error: {error}")
+
+
+image_path = Path(__file__).resolve().parent.parent / 'images' / 'feep.pgm'
+validate_image(image_path)
