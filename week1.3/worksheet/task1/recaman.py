@@ -1,14 +1,23 @@
 # Worksheet 1.3: Task 1
 
-L = int(input("Length of sequence: ")) # this should be your only input
+L = int(input("Length of sequence: ")) 
+def recaman(n):
+    seq = [0]
 
+    for k in range(1, n):
+        prev = seq[-1]
+        candidate = prev - k
 
-# Your code for the Recaman Sequence
-# You should store the sequence in an appropriate data structure named 'sequence'
+        if candidate > 0 and candidate not in seq:
+            seq.append(candidate)
+        else:
+            seq.append(prev + k)
 
+    return seq
 
-# You may wish to use further output for testing purposes while you develop your code
+length = int(input("Enter the length of the Recaman sequence: "))
+sequence = recaman(length)
 
-[print(item) for item in sequence]    # this method is reasonably independent of the choice of data structure
-
-# The web page https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence shows about 80 numbers in the sequence
+print("Recaman sequence:")
+for num in sequence:
+    print(num)
